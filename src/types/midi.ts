@@ -1,62 +1,87 @@
+export type PadMode
+  = | 'Hot Cue'
+    | 'Pad FX 1'
+    | 'Pad FX 2'
+    | 'Beat Jump'
+    | 'Beat Loop'
+    | 'Sampler'
+    | 'Keyboard'
+    | 'Key Shift'
+    | 'Unknown'
+
 export interface DeckState {
-  playPause: boolean // 1-1
-  cue: boolean // 1-2
-  shift: boolean // 1-3
-  jogTouch: boolean // 1-4 (Note 54)
-  jogTurn: number // 1-4 (CC 34/35/41 - relative)
-  loopIn: boolean // 1-5
-  loopOut: boolean // 1-6
-  loop4Beat: boolean // 1-7
-  cueLoopCallLeft: boolean // 1-8
-  cueLoopCallRight: boolean// 1-9
-  beatSync: boolean // 1-10
-  tempo: number // 1-11 (Slider)
-  pads: boolean[] // 5-5 (Pad 1-8)
-  padMode: string // 5-1 ~ 5-4 (Current Mode)
+  playPause: boolean // 0x0B (11)
+  cue: boolean // 0x0C (12)
+  shift: boolean // Shift button state
+  jogTouch: boolean // Note On/Off
+  jogTurn: number // Relative value (centered at 64)
+
+  // Loop Section
+  loopIn: boolean // 0x10 (16)
+  loopOut: boolean // 0x11 (17)
+  reloopExit: boolean // 0x4C (76) or similar
+
+  // Beat Sync
+  beatSync: boolean // 0x58 (88) or similar based on script
+
+  // Faders & Sliders
+  tempo: number // Pitch Slider
+
+  // Pads
+  pads: boolean[] // 8 pads state
+  padMode: PadMode // Current Active Mode
 }
 
 export interface MixerState {
-  // Per Channel (controlled via Ch1/Ch2)
-  trim1: number // 3-3
+  // Per Channel (controlled via Ch1/Ch2 or Ch7)
+  // DDJ-FLX4はMixer操作をCh1/Ch2のCCで送ることが多いですが
+  // グローバルなMixerセクションとして管理します
+  trim1: number
   trim2: number
-  eqHi1: number // 3-4
+  eqHi1: number
   eqHi2: number
   eqMid1: number
   eqMid2: number
   eqLow1: number
   eqLow2: number
-  chFader1: number // 3-7
+  chFader1: number
   chFader2: number
-  chCue1: boolean // 3-6
-  chCue2: boolean
+  chCue1: boolean // Headphone Cue Ch1
+  chCue2: boolean // Headphone Cue Ch2
 
-  // Global Mixer (controlled via Ch7)
-  masterLevel: number // 3-1
-  masterCue: boolean // 3-2
-  crossFader: number // 3-8
-  cfx1: number // 3-5 (Filter)
+  // Global Section
+  masterLevel: number
+  masterCue: boolean
+  crossFader: number
+  cfx1: number // Filter/CFX
   cfx2: number
-  micLevel: number // 3-9
-  headphoneMix: number // 3-11
-  headphoneLevel: number // 3-12
-  smartCfx: boolean // 3-10
-  smartFader: boolean // 3-13
+
+  // Microphone / Headphone
+  micLevel: number
+  headphoneMix: number
+  headphoneLevel: number
+
+  // Smart Features (FLX4 specific)
+  smartCfx: boolean
+  smartFader: boolean
 }
 
 export interface EffectState {
-  fxSelect: boolean // 2-2
-  beatLeft: boolean // 2-3
-  beatRight: boolean // 2-4
-  levelDepth: number // 2-5
-  fxOn: boolean // 2-6
-  chSelect: 'CH1' | 'CH2' | 'Master' | 'None' // 2-1
+  fxSelect: boolean // Select Next
+  fxSelectShift: boolean // Select Prev
+  beatLeft: boolean
+  beatRight: boolean
+  levelDepth: number // Knob
+  fxOn: boolean // Button
+  chSelect: 'CH1' | 'CH2' | 'Master' | 'None'
 }
 
 export interface BrowseState {
-  rotaryTurn: number // 4-1
+  rotaryTurn: number // +1 or -1
   rotaryPush: boolean
-  load1: boolean // 4-2
-  load2: boolean // 4-3
+  load1: boolean
+  load2: boolean
+  viewBack: boolean // Often distinct button
 }
 
 export interface DJControllerState {
