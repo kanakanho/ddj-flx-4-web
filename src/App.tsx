@@ -286,6 +286,7 @@ export default function MidiLogger() {
     <div style={{ background: '#121212', minHeight: '100vh', color: '#fff', fontFamily: 'sans-serif' }}>
       <div style={{ padding: '20px', borderBottom: '1px solid #333' }}>
         <button
+          type="button"
           onClick={connectMidi}
           disabled={isReady}
           style={{

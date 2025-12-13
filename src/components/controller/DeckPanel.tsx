@@ -73,9 +73,9 @@ export default function DeckPanel({ deck, id }: { deck: DeckState, id: number })
           <span style={{ color: '#fff' }}>{deck.padMode}</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-          {deck.pads.map((active, i) => (
+          {deck.pads.map(active => (
             <div
-              key={i}
+              key={crypto.randomUUID()}
               style={{
                 height: '40px',
                 background: active ? '#00e5ff' : '#333',
