@@ -72,8 +72,6 @@ pnpm lint:fix   # ESLintで自動修正可能な問題を修正
 
 型定義の詳細は [`src/types/midi.ts`](src/types/midi.ts) を参照してください。
 
-このプロジェクトのMIDIマッピングとコントローラーの型定義は、Mixxxの公式DDJ-FLX4スクリプトを参考にしています: [Pioneer-DDJ-FLX4-script.js](https://github.com/mixxxdj/mixxx/blob/main/res/controllers/Pioneer-DDJ-FLX4-script.js)
-
 ## 📄 ライセンス
 
 MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
