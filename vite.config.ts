@@ -11,5 +11,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: process.env.GITHUB_PAGES ? 'ddj-flx-4-web' : './',
+  base: process.env.GITHUB_PAGES ? 'ddj-flx4-web' : './',
 })
