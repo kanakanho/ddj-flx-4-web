@@ -12,14 +12,11 @@ const initialDeck: DeckState = {
   loopIn: false,
   loopOut: false,
   reloopExit: false,
+  cueLoopCallLeft: false,
+  cueLoopCallRight: false,
 
-  // Beat Sync
   beatSync: false,
-
-  // Faders & Sliders
   tempo: 0.5,
-
-  // Pads
   pads: Array.from<boolean>({ length: 8 }).fill(false),
   padMode: 'Hot Cue',
 }
@@ -28,7 +25,6 @@ const initialState: DJControllerState = {
   deck1: { ...initialDeck },
   deck2: { ...initialDeck },
   mixer: {
-    // Knobs (Center = 0.5)
     trim1: 0.5,
     trim2: 0.5,
     eqHi1: 0.5,
@@ -37,30 +33,18 @@ const initialState: DJControllerState = {
     eqMid2: 0.5,
     eqLow1: 0.5,
     eqLow2: 0.5,
-
-    // Faders (Bottom = 0)
     chFader1: 0,
     chFader2: 0,
-
-    // Cues
     chCue1: false,
     chCue2: false,
-
-    // Global
     masterLevel: 0,
     masterCue: false,
     crossFader: 0.5,
-
-    // CFX / Filter (Center = 0.5)
     cfx1: 0.5,
     cfx2: 0.5,
-
-    // Mic / HP
     micLevel: 0,
     headphoneMix: 0.5,
     headphoneLevel: 0.5,
-
-    // Smart Features
     smartCfx: false,
     smartFader: false,
   },

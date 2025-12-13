@@ -64,6 +64,10 @@ export default function MidiLogger() {
               break // 17
             case 0x4C: next[deckKey].reloopExit = isNoteOn
               break // 76: Reloop/Exit
+            case 0x51: next[deckKey].cueLoopCallLeft = isNoteOn
+              break // 81
+            case 0x53: next[deckKey].cueLoopCallRight = isNoteOn
+              break // 83
 
             // Beat Sync
             case 0x58: next[deckKey].beatSync = isNoteOn

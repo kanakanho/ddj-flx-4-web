@@ -13,7 +13,7 @@ export default function DeckPanel({ deck, id }: { deck: DeckState, id: number })
       <div style={{ display: 'flex', justifyContent: 'center', gap: '5px' }}>
         <Button label="IN/4" active={deck.loopIn} color="#ff9800" />
         <Button label="OUT" active={deck.loopOut} color="#ff9800" />
-        <Button label="EXIT" active={deck.loop4Beat} color="#ff9800" />
+        <Button label="EXIT" active={deck.reloopExit} color="#ff9800" />
         <Button label="CUE CALL <" active={deck.cueLoopCallLeft} color="#ff9800" />
         <Button label="CUE CALL >" active={deck.cueLoopCallRight} color="#ff9800" />
       </div>
