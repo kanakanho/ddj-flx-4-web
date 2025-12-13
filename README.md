@@ -1,75 +1,81 @@
-# React + TypeScript + Vite
+# DDJ-FLX4 Web Controller
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pioneer DDJ-FLX4 DJコントローラーをWeb MIDI APIを使用してブラウザで可視化・操作するWebアプリケーションです。
 
-Currently, two official plugins are available:
+## 🌐 ウェブサイト
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+デプロイされたアプリケーションはこちら:
+**https://kanakanho.github.io/ddj-flx4-web/**
 
-## React Compiler
+## ✨ 機能
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Web MIDI APIを使用したリアルタイムMIDI入力の可視化
+- Pioneer DDJ-FLX4コントローラーの完全なUI再現
+- デッキ、ミキサー、エフェクト、ブラウザセクションの状態管理
+- パッドモード切り替え（Hot Cue、Pad FX、Beat Jump、Sampler等）
+- ジョグホイール、フェーダー、ノブの視覚的フィードバック
 
-Note: This will impact Vite dev & build performances.
+## 🚀 使い方
 
-## Expanding the ESLint configuration
+1. ブラウザで [https://kanakanho.github.io/ddj-flx4-web/](https://kanakanho.github.io/ddj-flx4-web/) にアクセス
+2. Pioneer DDJ-FLX4コントローラーをコンピューターに接続
+3. 「Connect DDJ-FLX4」ボタンをクリックしてMIDI接続を確立
+4. コントローラーを操作すると、画面上のUIがリアルタイムで更新されます
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ブラウザ要件
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Web MIDI APIをサポートするブラウザが必要です（Chrome、Edge、Opera等）
+- Firefox、Safariではデフォルトでサポートされていません
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ 開発環境の構築
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 必要な環境
+
+- Node.js (v20以上推奨)
+- pnpm (v10以上)
+
+### セットアップ手順
+
+1. 依存パッケージをインストール:
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-import reactDom from 'eslint-plugin-react-dom'
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. 開発サーバーを起動:
+```bash
+pnpm dev
 ```
+
+ブラウザで `http://localhost:5173` にアクセスできます。
+
+### 利用可能なコマンド
+
+```bash
+pnpm dev        # 開発サーバーを起動（ホットリロード有効）
+pnpm build      # プロダクションビルドを作成
+pnpm preview    # ビルドしたアプリをプレビュー
+pnpm lint       # ESLintでコードをチェック
+pnpm lint:fix   # ESLintで自動修正可能な問題を修正
+```
+
+## 📦 技術スタック
+
+- **React 19** - UIライブラリ
+- **TypeScript** - 型安全性
+- **Vite** (Rolldown) - 高速ビルドツール
+- **Jotai** - 状態管理
+- **Web MIDI API** - MIDIデバイスとの通信
+
+## 🎹 MIDIの型情報
+
+このプロジェクトでは、DDJ-FLX4コントローラーの状態を型安全に管理するための型定義を使用しています。
+
+型定義の詳細は [`src/types/midi.ts`](src/types/midi.ts) を参照してください。
+
+## 📄 ライセンス
+
+MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
+
+---
+
+Built with ❤️ using React + TypeScript + Vite
