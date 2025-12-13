@@ -81,7 +81,7 @@ pnpm lint:fix   # ESLintで自動修正可能な問題を修正
 #### `DeckState`
 デッキ（左右のターンテーブル部分）の状態を表す型:
 ```typescript
-interface DeckState {
+export interface DeckState {
   playPause: boolean // Play/Pauseボタン (0x0B)
   cue: boolean // Cueボタン (0x0C)
   shift: boolean // Shiftボタン (0x3F)
@@ -110,7 +110,7 @@ interface DeckState {
 #### `MixerState`
 ミキサーセクションの状態:
 ```typescript
-interface MixerState {
+export interface MixerState {
   // チャンネル別コントロール
   trim1: number // チャンネル1 Trim
   trim2: number // チャンネル2 Trim
@@ -142,7 +142,7 @@ interface MixerState {
 #### `EffectState`
 エフェクトセクションの状態:
 ```typescript
-interface EffectState {
+export interface EffectState {
   fxSelect: boolean // エフェクト選択
   fxSelectShift: boolean // エフェクト選択（Shift）
   beatLeft: boolean // Beat Left
@@ -156,7 +156,7 @@ interface EffectState {
 #### `BrowseState`
 ブラウザセクションの状態:
 ```typescript
-interface BrowseState {
+export interface BrowseState {
   rotaryTurn: number // ロータリーエンコーダーの回転
   rotaryPush: boolean // ロータリーエンコーダーの押下
   load1: boolean // Load to Deck 1
@@ -168,7 +168,7 @@ interface BrowseState {
 #### `PadMode`
 パッドの動作モード:
 ```typescript
-type PadMode
+export type PadMode
   = | 'Hot Cue' // ホットキュー（0x1B）
     | 'Pad FX 1' // パッドFX 1（0x1E）
     | 'Pad FX 2' // パッドFX 2（0x6B）
